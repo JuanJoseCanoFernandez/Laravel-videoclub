@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Movie;
+use App\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -9,27 +10,6 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-	{
-    	// $this->call(UsersTableSeeder::class);
-		self::seedCatalog();
-		$this->command->info('Tabla catálogo inicializada con datos!');
-	}
-    private function seedCatalog()
-    {
-    	DB::table('movies')->delete();
-		foreach( $this->arrayPeliculas as $pelicula ) {
-			$p = new Movie;
-			$p->title = $pelicula['title'];
-			$p->year = $pelicula['year'];
-			$p->director = $pelicula['director'];
-			$p->poster = $pelicula['poster'];
-			$p->rented = $pelicula['rented'];
-			$p->synopsis = $pelicula['synopsis'];
-			$p->save();
-		}
-
-    }
     private $arrayPeliculas = array(
 		array(
 			'title' => 'El padrino',
@@ -192,4 +172,39 @@ class DatabaseSeeder extends Seeder
 			'synopsis' => 'Un joven hastiado de su gris y monótona vida lucha contra el insomnio. En un viaje en avión conoce a un carismático vendedor de jabón que sostiene una teoría muy particular: el perfeccionismo es cosa de gentes débiles; sólo la autodestrucción hace que la vida merezca la pena. Ambos deciden entonces fundar un club secreto de lucha, donde poder descargar sus frustaciones y su ira, que tendrá un éxito arrollador.'
 		)
 	);
+    public function run()
+	{
+    	// $this->call(UsersTableSeeder::class);
+		self::seedCatalog();
+		self::seedUsers();
+		$this->command->info('Tabla catálogo inicializada con datos!');
+	}
+    private function seedCatalog()
+    {
+    	DB::table('movies')->delete();
+		foreach( $this->arrayPeliculas as $pelicula ) {
+			$p = new Movie;
+			$p->title = $pelicula['title'];
+			$p->year = $pelicula['year'];
+			$p->director = $pelicula['director'];
+			$p->poster = $pelicula['poster'];
+			$p->rented = $pelicula['rented'];
+			$p->synopsis = $pelicula['synopsis'];
+			$p->save();
+		}
+    }
+    private function seedUsers()
+    {
+    	DB::table('users')->delete();
+    	$user = new User;
+    	$user->name = 'juanjo';
+    	$user->email = 'juanjo@gmail.com';
+    	$user->password= bcrypt('juanjo');
+    	$user->save();
+    	$user2 = new User;
+    	$user2->name = 'pepe';
+    	$user2->email = 'pepe@gmail.com';
+    	$user2->password= bcrypt('pepe');
+    	$user2->save();
+    }
 }

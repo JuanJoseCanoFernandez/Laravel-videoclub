@@ -20,13 +20,13 @@
 				<strong>Estado:</strong>
 				@if($unicaPelicula->rented==true)
 					Pelicula actualmente alquilada<br><br>
-					<button class="btn btn-danger">Devolver pelicula</button>
+					<a class="btn btn-danger">Devolver pelicula</a>
 				@else
 					Pelicula disponible <br><br>
-					<button class="btn btn-primary">Alquilar pelicula</button>
+					<a class="btn btn-primary">Alquilar pelicula</a>
 				@endif
-				<button class="btn btn-warning">Editar pelicula</button>
-				<button class="btn">Volver al listado</button>
+				<a class="btn btn-warning" href="{{url('catalog/edit/'.$unicaPelicula->id)}}">Editar pelicula</a>
+				<a class="btn" href="{{url('/')}}">Volver al listado</a>
 			</p>
 		</div>
 	</div>

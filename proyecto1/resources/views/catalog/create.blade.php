@@ -12,7 +12,7 @@
             Añadir película
          </div>
          <div class="card-body" style="padding:30px">
-            <form action="catalog_create.php" method="post">
+            <form action="#" method="post">
                {{ csrf_field() }}
                <div class="form-group">
                   <label for="title">Título</label>
@@ -21,7 +21,7 @@
 
                <div class="form-group">
                	  <label for="title">Año</label>
-                  <input type="text" name="año" id="year" class="form-control">
+                  <input type="text" name="year" id="year" class="form-control">
                </div>
 
                <div class="form-group">
